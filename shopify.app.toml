@@ -1,0 +1,47 @@
+client_id = "357d90dc377e0ab3d314a1ba414cf868"
+name = "order notification manager"
+application_url = "https://example.com"
+embedded = true
+
+[access_scopes]
+scopes = "read_orders,read_customers,read_products,write_app_proxy"
+
+[webhooks]
+api_version = "2026-07"
+
+[[webhooks.subscriptions]]
+uri = "/webhooks/app/uninstalled"
+topics = ["app/uninstalled"]
+
+[[webhooks.subscriptions]]
+uri = "/webhooks/app/scopes_update"
+topics = ["app/scopes_update"]
+
+[[webhooks.subscriptions]]
+uri = "/webhooks/app/orders-create"
+topics = ["orders/create"]
+
+[[webhooks.subscriptions]]
+uri = "/webhooks/app/customers-create"
+topics = ["customers/create"]
+
+[[webhooks.subscriptions]]
+uri = "/webhooks/app/customers-email-marketing-consent-update"
+topics = ["customers_email_marketing_consent/update"]
+
+[[webhooks.subscriptions]]
+uri = "/webhooks/app/products-create"
+topics = ["products/create"]
+
+[app_proxy]
+url = "/contact-form"
+prefix = "apps"
+subpath = "order-notification-contact"
+
+[auth]
+redirect_urls = [
+  "https://example.com/api/auth"
+]
+
+[build]
+automatically_update_urls_on_dev = true
