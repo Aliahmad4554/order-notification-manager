@@ -1,10 +1,9 @@
-import { redirect } from "react-router";
 import { authenticate } from "../../shopify.server";
 
 export const loader = async ({ request }) => {
-  await authenticate.admin(request);
+  const { redirect } = await authenticate.admin(request);
 
-  throw redirect("/app");
+  return redirect("/app");
 };
 
 export default function Index() {
